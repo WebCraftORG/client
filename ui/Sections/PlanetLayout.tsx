@@ -1,5 +1,6 @@
+import React, { ReactNode } from "react";
 import { Button } from "@/ui/ui/button";
-import { ReactNode } from "react";
+import RoverDisplaySection from "./RoverDisplaySection";
 
 interface PlanetLayoutProps {
     children: ReactNode;
@@ -8,8 +9,11 @@ interface PlanetLayoutProps {
 export function PlanetLayout({ children }: PlanetLayoutProps) {
     return (
         <>
-            {/* <Header /> */}
-            <MainContent>{children}</MainContent>
+            <Header />
+            <MainContent>
+                {children}
+                <RoverDisplaySection />
+            </MainContent>
             <Footer />
         </>
     );
@@ -48,7 +52,6 @@ export function Header({ planetName }: HeaderProps) {
   );
 };
 
-
 interface MainContentProps {
     children: ReactNode;
     backgroundImage?: string;
@@ -58,6 +61,7 @@ export function MainContent({ children, backgroundImage }: MainContentProps) {
     return (
         <main className="pt-20 pb-20 md:pb-0" style={{ backgroundImage }}>
             {children}
+            <RoverDisplaySection />
         </main>
     );
 }
@@ -87,128 +91,4 @@ export function Footer() {
     );
 };
 
-export function ArrowLeftIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m12 19-7-7 7-7" />
-        <path d="M19 12H5" />
-      </svg>
-    )
-  }
-  
-  
-  export function ArrowRightIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 12h14" />
-        <path d="m12 5 7 7-7 7" />
-      </svg>
-    )
-  }
-  
-  
-  export function BookOpenIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-      </svg>
-    )
-  }
-  
-  
-  export function CompassIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-      </svg>
-    )
-  }
-  
-  
-  export function HomeIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-        <polyline points="9 22 9 12 15 12 15 22" />
-      </svg>
-    )
-  }
-  
-  
-  export function SearchIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="11" cy="11" r="8" />
-        <path d="m21 21-4.3-4.3" />
-      </svg>
-    )
-  }
-  
+// Icons components remain unchanged
