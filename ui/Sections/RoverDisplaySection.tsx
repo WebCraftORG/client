@@ -21,14 +21,9 @@ function RoverDisplaySection() {
 
   useEffect(() => {
     async function fetchRovers() {
-      try {
-        const { data, error } = await supabase.from<Rover>("contentROVERIMAGES").select("*");
-        if (error) throw error;
-        setRovers(data || []);
-      } catch (error) {
-        console.error("Error fetching rovers:", error);
-        alert("Failed to fetch rovers. Please refresh the page.");
-      }
+      const { data, error } = await supabase.from<Rover>("contentROVERIMAGES").select("*");
+      if (error) throw error;
+      setRovers(data || []);
     }
     fetchRovers();
   }, []);
@@ -50,30 +45,25 @@ function RoverDisplaySection() {
   };
 
   const deployRover = async (roverId: string) => {
-    try {
-      const newItem = {
-        item: roverId,
-        owner: "user123",
-        quantity: 1,
-        location: "Planet X",
-        sector: selectedSector,
-        planetSector: "Sector 42",
-        notes: "Collected by rover deployment",
-        time_of_deploy: new Date().toISOString(),
-      };
+    const newItem = {
+      item: roverId,
+      owner: "user123",
+      quantity: 1,
+      location: "Planet X",
+      sector: selectedSector,
+      planetSector: "Sector 42",
+      notes: "Collected by rover deployment",
+      time_of_deploy: new Date().toISOString(),
+    };
 
-      await supabase.from("inventoryUSERS").insert([newItem]);
+    await supabase.from("inventoryUSERS").insert([newItem]);
 
-      const updatedRovers = rovers.map((rover) =>
-        rover.id === roverId ? { ...rover, deployed: true } : rover
-      );
-      setRovers(updatedRovers);
+    const updatedRovers = rovers.map((rover) =>
+      rover.id === roverId ? { ...rover, deployed: true } : rover
+    );
+    setRovers(updatedRovers);
 
-      alert(`Rover deployed successfully to sector ${selectedSector}! Item collected.`);
-    } catch (error) {
-      console.error("Error deploying rover:", error);
-      alert("Error deploying rover. Please try again later.");
-    }
+    alert(`Rover deployed successfully to sector ${selectedSector}! Item collected.`);
   };
 
   const handleInventoryAccess = () => {
