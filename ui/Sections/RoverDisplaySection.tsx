@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 interface Rover {
   id: string;
@@ -13,9 +13,8 @@ function RoverDisplaySection() {
   const [itemsCollected, setItemsCollected] = useState<number>(0);
   const collectionIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Initialize the Supabase client using createBrowserSupabaseClient
-  // This function automatically uses NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY from the environment
-  const supabase: SupabaseClient = createBrowserSupabaseClient();
+
+  const supabase: SupabaseClient = useSupabaseClient();
 
   useEffect(() => {
     async function fetchRovers() {
